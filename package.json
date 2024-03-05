@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-llava2-test",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "testing publishing",
   "keywords": [
     "n8n-community-node-package"
@@ -33,7 +33,7 @@
       "dist/credentials/ExampleCredentialsApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/Trace/Trace.node.js"
+      "dist/nodes/Llava/Llava.node.js"
     ]
   },
   "devDependencies": {
