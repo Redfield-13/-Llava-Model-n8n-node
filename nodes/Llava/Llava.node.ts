@@ -38,6 +38,35 @@ export class Llava implements INodeType {
           },
 
         }
+        ,{
+          displayName: 'Top-P (Decrease to Ignore Less Likely Tokens)',
+          name: 'top_p',
+          type: 'number',
+          noDataExpression: true,
+          default:1,
+          displayOptions: {
+          },
+
+        },{
+          displayName: 'Temperature',
+          name: 'temperature',
+          type: 'number',
+          noDataExpression: true,
+          default:0.2,
+          displayOptions: {
+          },
+
+        }
+        ,{
+          displayName: 'Max Tokens (A Word Is 2-3 Tokens)',
+          name: 'max_tokens',
+          type: 'number',
+          noDataExpression: true,
+          default:1024,
+          displayOptions: {
+          },
+
+        }
       ],
 
     }
@@ -53,8 +82,11 @@ export class Llava implements INodeType {
         for (let i = 0; i < length; i++) {
             const imageUrl = this.getNodeParameter('imageUrl',i) as string;
             const prompt = this.getNodeParameter('prompt',i) as string;
+            const top_p = this.getNodeParameter('top_p',i) as number;
+            const temperature = this.getNodeParameter('temperature',i) as number;
+            const max_tokens = this.getNodeParameter('max_tokens',i) as number;
 
-            let Url = `http://127.0.0.1:8000/llava?url=${imageUrl}&prompt=${prompt}`;
+            let Url = `http://127.0.0.1:8000/llava?url=${imageUrl}&prompt=${prompt}&top_p=${top_p}&temperature=${temperature *100}&max_tokens=${max_tokens}`;
             let response = await this.helpers.request({ method: 'GET', url: Url, json: true });
             let trace = response
             responseData.push({Url, trace})
